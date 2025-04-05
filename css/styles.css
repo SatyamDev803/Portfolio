@@ -139,6 +139,11 @@ img {
     height: auto;
 }
 
+p {
+    line-height: 1.5;
+    word-wrap: normal;
+}
+
 /*==================== REUSABLE CSS CLASSES ====================*/
 
 .section {
@@ -152,7 +157,7 @@ img {
 .section__subtitle {
     display: block;
     font-size: var(--small-font-size);
-    margin-bottom: var(--mb-3);
+    margin: var(--mb-0-5) 0 var(--mb-2);
 }
 
 .section__title,
@@ -164,7 +169,7 @@ img {
 /*==================== LAYOUT ====================*/
 .container {
     /* max-width: 768px; */
-    max-width: 95%;
+    max-width: 97%;
     margin-left: var(--mb-1-5);
     margin-right: var(--mb-1-5);
 } 
@@ -410,7 +415,7 @@ img {
 
 /*==================== ABOUT ====================*/
 .about__img{
-    width: 200px;
+    width: 100%;
     border-radius: .5rem;
     justify-self: center;
     align-self: center;
@@ -1135,7 +1140,10 @@ img {
     }
 
     .section__subtitle{
-        margin-bottom: 4rem;
+        font-size: var(--h2-font-size);
+        margin-bottom: 2rem;
+        word-wrap: normal;
+        text-align: center;
     }
 
     .header{
@@ -1199,7 +1207,7 @@ img {
     }
 
     .about__img{
-        width: 350px;
+        width: 100%;
     }
 
     .about__description{
@@ -1211,7 +1219,8 @@ img {
     }
 
     .about__buttons{
-        justify-content: initial;
+        justify-content: center;
+        margin-top: 2rem;
     }
 
     .qualification__tabs{
