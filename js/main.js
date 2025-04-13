@@ -195,3 +195,65 @@ themeButton.addEventListener('click', () => {
     localStorage.setItem('selected-theme', getCurrentTheme())
     localStorage.setItem('selected-icon', getCurrentIcon())
 })
+
+/*==================== FORM VALIDATION ====================*/
+function validateForm() {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    console.log("Name:", name);
+    console.log("Email:", email);
+    console.log("Message:", message);
+
+    if (!name || !email || !message) {
+        alert('Please fill out all required fields.');
+        return false; // Prevent form submission
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        alert('Please enter a valid email address.');
+        return false; // Prevent form submission
+    }
+
+    return true; // Allow form submission
+}
+
+/*==================== FORM SUBMISSION ====================*/
+document.getElementById('contactForm').addEventListener('submit', async function (e) {
+    e.preventDefault(); // Prevent the default form submission
+
+    // Get form data
+    const formData = new FormData(this);
+
+    // Send the form data to Formspree
+    try {
+        const response = await fetch('https://formspree.io/f/xanevapj', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json',
+            },
+        });
+
+        if (response.ok) {
+            // Show confirmation message
+            const confirmationMessage = document.getElementById('confirmationMessage');
+            confirmationMessage.classList.remove('hide');
+
+            // Automatically hide the confirmation message after 2 seconds
+            setTimeout(() => {
+                confirmationMessage.classList.add('hide');
+            }, 2000);
+
+            // Clear the form fields
+            this.reset();
+        } else {
+            alert('There was an error sending your message. Please try again later.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('There was an error sending your message. Please try again later.');
+    }
+});
